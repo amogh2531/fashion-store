@@ -13,9 +13,10 @@ import {
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { getUserDetails } from '../actions/userActions';
+import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message';
+import { USER_DETAILS_RESET } from '../constants/userConstants';
 
 const ProfileScreen = () => {
 	const dispatch = useDispatch();
@@ -33,6 +34,9 @@ const ProfileScreen = () => {
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userInfo } = userLogin;
 
+	const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+	const { success } = userUpdateProfile;
+
 	useEffect(() => {
 		if (!userInfo) {
 			navigate('/login');
@@ -44,7 +48,7 @@ const ProfileScreen = () => {
 				setEmail(user.email);
 			}
 		}
-	}, [userInfo, navigate, dispatch, user]);
+	}, [userInfo, navigate, dispatch, user, success]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -52,7 +56,8 @@ const ProfileScreen = () => {
 		if (password !== confirmPassword) {
 			setMessage('Passwords do not match');
 		} else {
-			// DISPATCH UPDATE PROFILE
+			dispatch(updateUserProfile({ id: user._id, name, email, password }));
+			dispatch({ type: USER_DETAILS_RESET });
 		}
 	};
 
