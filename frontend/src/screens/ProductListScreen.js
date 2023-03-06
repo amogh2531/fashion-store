@@ -15,10 +15,15 @@ import { useEffect } from 'react';
 import { IoAdd, IoPencilSharp, IoTrashBinSharp } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { deleteProduct, listProducts } from '../actions/productActions';
+import {
+	createProduct,
+	deleteProduct,
+	listProducts,
+} from '../actions/productActions';
 
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
 const ProductListScreen = () => {
 	const dispatch = useDispatch();
@@ -37,13 +42,34 @@ const ProductListScreen = () => {
 		error: errorDelete,
 	} = productDelete;
 
+	const productCreate = useSelector((state) => state.productCreate);
+	const {
+		loading: loadingCreate,
+		success: successCreate,
+		error: errorCreate,
+		product: createdProduct,
+	} = productCreate;
+
 	useEffect(() => {
-		if (userInfo && userInfo.isAdmin) {
-			dispatch(listProducts());
-		} else {
+		dispatch({ type: PRODUCT_CREATE_RESET });
+
+		if (userInfo && !userInfo.isAdmin) {
 			navigate('/login');
 		}
-	}, [dispatch, navigate, userInfo, successDelete]);
+
+		if (successCreate) {
+			navigate(`/admin/product/${createdProduct._id}/edit`);
+		} else {
+			dispatch(listProducts());
+		}
+	}, [
+		dispatch,
+		navigate,
+		userInfo,
+		successDelete,
+		successCreate,
+		createdProduct,
+	]);
 
 	const deleteHandler = (id) => {
 		if (window.confirm('Are you sure?')) {
@@ -52,7 +78,7 @@ const ProductListScreen = () => {
 	};
 
 	const createProductHandler = () => {
-		// CREATE PRODUCT
+		dispatch(createProduct());
 	};
 
 	return (
@@ -61,11 +87,17 @@ const ProductListScreen = () => {
 				<Heading as='h1' fontSize='3xl' mb='5'>
 					Product
 				</Heading>
-				<Button colorScheme='teal'>
+				<Button colorScheme='teal' onClick={createProductHandler}>
 					<Icon as={IoAdd} mr='2' fontSize='xl' fontWeight='bold' /> Create
 					Product
 				</Button>
 			</Flex>
+
+			{loadingDelete && <Loader />}
+			{errorDelete && <Message type='error'>{errorDelete}</Message>}
+
+			{loadingCreate && <Loader />}
+			{errorCreate && <Message type='error'>{errorCreate}</Message>}
 
 			{loading ? (
 				<Loader />
