@@ -121,6 +121,32 @@ const Header = () => {
 						Login
 					</Link>
 				)}
+
+				{/* Admin Menu */}
+				{userInfo && userInfo.isAdmin && (
+					<Menu>
+						<MenuButton
+							ml='3'
+							fontSize='sm'
+							fontWeight='semibold'
+							as={Button}
+							textTransform='uppercase'
+							_hover={{ textDecor: 'none', opacity: '0.7' }}>
+							Manage <Icon as={IoChevronDown} />
+						</MenuButton>
+						<MenuList>
+							<MenuItem as={RouterLink} to='/admin/userlist'>
+								All Users
+							</MenuItem>
+							<MenuItem as={RouterLink} to='/admin/productlist'>
+								All Products
+							</MenuItem>
+							<MenuItem as={RouterLink} to='/admin/orderlist'>
+								All Orders
+							</MenuItem>
+						</MenuList>
+					</Menu>
+				)}
 			</Box>
 		</Flex>
 	);
