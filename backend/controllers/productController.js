@@ -76,6 +76,7 @@ const createProduct = asyncHandler(async (req, res) => {
  * @access	private/admin
  */
 const updateProduct = asyncHandler(async (req, res) => {
+	console.log(req.body);
 	const { name, price, description, image, brand, category, countInStock } =
 		req.body;
 
