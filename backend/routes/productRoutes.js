@@ -1,8 +1,8 @@
 import express from 'express';
 
 import {
-	createdProductReview,
 	createProduct,
+	createProductReview,
 	deleteProduct,
 	getProductById,
 	getProducts,
