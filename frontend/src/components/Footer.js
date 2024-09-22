@@ -4,7 +4,7 @@ const Footer = () => {
 	return (
 		<Flex as='footer' justifyContent='center' py='5'>
 			<Text>
-				Copyright {new Date().getFullYear()}. RST Store. All Rights Reserved.
+				Copyright {new Date().getFullYear()}. Fashion Store. All Rights Reserved.
 			</Text>
 		</Flex>
 	);

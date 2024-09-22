@@ -55,7 +55,7 @@ const Header = () => {
 					as={RouterLink}
 					to='/'
 					_hover={{ color: 'gray.500', textDecor: 'none' }}>
-					RST Store
+					Fashion Store
 				</Link>
 			</Heading>
 
@@ -82,7 +82,7 @@ const Header = () => {
 					mr='5'
 					my={{ base: '2', md: 0 }}
 					display='flex'
-					alignItems='center'
+					alignItems='center'	
 					_hover={{ color: 'whiteAlpha.800' }}>
 					<Icon as={HiShoppingBag} mr='1' w='4' h='4' />
 					Cart

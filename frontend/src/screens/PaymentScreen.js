@@ -57,6 +57,7 @@ const PaymentScreen = () => {
 							onChange={setPaymentMethodRadio}>
 							<HStack space='24px'>
 								<Radio value='paypal'>PayPal or Credit/Debit Card</Radio>
+								<Radio value='cash'>Cash on delivery</Radio>
 							</HStack>
 						</RadioGroup>
 					</FormControl>

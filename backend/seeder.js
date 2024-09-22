@@ -45,7 +45,7 @@ const destroyData = async () => {
 		console.log('Data destroyed'.red.inverse);
 		process.exit();
 	} catch (error) {
-		console.error(`${error}`.red.inverse);
+		console.error(`${error}`.red.inverse);	
 		process.exit(1);
 	}
 };
@@ -55,3 +55,4 @@ if (process.argv[2] === '-d') {
 } else {
 	importData();
 }
+

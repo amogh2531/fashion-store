@@ -1,5 +1,5 @@
 {
-	"name": "rststore",
+	"name": "fashionstore",
 	"version": "1.0.0",
 	"type": "module",
 	"description": "",
@@ -12,16 +12,10 @@
 		"data:import": "node backend/seeder",
 		"data:destroy": "node backend/seeder -d"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+ssh://git@gitlab.com/rahulat4200/rst-store-jan-morning.git"
-	},
-	"author": "Rahul Sharma",
+	
+	"author": "Amogh Phadke",
 	"license": "UNLICENCED",
-	"bugs": {
-		"url": "https://gitlab.com/rahulat4200/rst-store-jan-morning/issues"
-	},
-	"homepage": "https://gitlab.com/rahulat4200/rst-store-jan-morning#readme",
+	
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
 		"colors": "^1.4.0",
